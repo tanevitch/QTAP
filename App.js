@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
-import { View, Text } from 'react-native';
-import tw from 'tailwind-react-native-classnames';
-import Login from './src/components/login/Login';
+import React from "react";
+import { NativeBaseProvider, Text, extendTheme } from "native-base";
+import Login from "./src/components/login/login";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 
-export default function App() {
-  
+const config = {
+  dependencies: {
+    // For Expo projects (Bare or managed workflow)
+    "linear-gradient": require("expo-linear-gradient").LinearGradient,
+    // For non expo projects
+    // 'linear-gradient': require('react-native-linear-gradient').default,
+  },
+};
+
+export default function App () {
   return (
-    <View style={tw`flex-1 justify-center items-center`}>
-      <Login />
-
-    </View>
+    <NativeBaseProvider config={config} >
+      <SafeAreaView >
+        <Login></Login>
+      </SafeAreaView>
+    </NativeBaseProvider>
   );
-
-  }
+};
