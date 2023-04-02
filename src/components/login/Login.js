@@ -1,31 +1,54 @@
-import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, Center, NativeBaseProvider } from "native-base";
+import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, Center, ScrollView, View } from "native-base";
 import { LinearGradient } from 'expo-linear-gradient';
-import { Dimensions } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 export default function Login() {
     const { width, height } = Dimensions.get('window');
-    return (
+    const styles = StyleSheet.create(
+        {
+            bottomView: {
+                flex: 1.5,
+                bottom: 50,
+                borderTopStartRadius: 60,
+                backgroundColor: "white",
+                borderTopEndRadius: 60
+            },
+            brandView: {
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center"
+            },
+            brandViewText: {
+                color: "#ffffff",
+                fontSize: 40,
+                fontWeight: "bold",
+                textTransform: "uppercase"
 
-        <Center w="100%" backgroundColor="light.100" h={height}>
-             <Box position="absolute" top={-height * 0.3} width={width} height={height * 0.5}>
-      <LinearGradient
-        colors={['#FEAC5E', '#C779D0']}
-        start={[0, 0.5]}
-        end={[1, 0.5]}
-        style={{ flex: 1 }}
-      /></Box>
-            <Box safeArea p="2" py="8" w="90%" maxW="290">
-                <Heading size="2xl" fontWeight="600" color="coolGray.800" _dark={{
-                    color: "warmGray.50"
-                }}>
+            }
+        }
+    )
+    return (
+        <Center w={width} h={height}>
+            <Box style={{height: height/2.5, width: width}}>
+                <LinearGradient
+                    colors={['#FEAC5E', '#C779D0']}
+                    start={[0, 0.5]}
+                    end={[1, 0.5]}
+                    style={{ flex: 1 }}
+                >
+                <View style={styles.brandView}>
+                <Heading size="4xl" fontFamily="Inter_600SemiBold" fontWeight="600" color="white">
                     QTAP
                 </Heading>
-                <Heading mt="1" _dark={{
-                    color: "warmGray.200"
-                }} color="coolGray.600" fontWeight="medium" size="xs">
+                <Heading mt="1" color="white" fontFamily="Inter_200ExtraLight" fontWeight="medium" size="md">
                     ¿Qué te anda pasando?
                 </Heading>
+                </View>
+                </LinearGradient>
+            </Box>
 
+            <View style={styles.bottomView} width={width} height={height}>
+                <View style={{padding: 40}}>
                 <VStack space={3} mt="5">
                     <FormControl>
                         <FormControl.Label>Email</FormControl.Label>
@@ -34,30 +57,27 @@ export default function Login() {
                     <FormControl>
                         <FormControl.Label>Contraseña</FormControl.Label>
                         <Input type="password" />
-                        <Text _text={{
-                            fontSize: "xs",
-                            fontWeight: "500",
-                            color: "indigo.500"
-                        }} alignSelf="flex-end" mt="1">
+                        <Link _text={{
+                            fontWeight: "medium",
+                            fontSize: "sm",
+                            color: "coolGray.500"
+                        }} alignSelf="flex-end" my="2">
                             ¿Olvidaste tu contraseña?
-                        </Text>
+                        </Link>
                     </FormControl>
                     <LinearGradient
                         colors={['#FEAC5E', '#C779D0']}
                         style={{ borderRadius: 5, height: 50, alignItems: 'center', justifyContent: 'center' }}
                         start={[0, 0.5]}
-                        end={[1, 0.5]}
-
-                    ><Text color="white" fontWeight="bold">Iniciar Sesión</Text>
+                        end={[1, 0.5]}>
+                        <Text color="white"fontSize="16" fontWeight="bold">Iniciar Sesión</Text>
                     </LinearGradient>
                     <HStack mt="6" justifyContent="center">
-                        <Text fontSize="sm" color="coolGray.600" _dark={{
-                            color: "warmGray.200"
-                        }}>
-                            No tengo cuenta.{" "}
+                        <Text fontSize="sm" color="coolGray.600">
+                            No tengo cuenta.
                         </Text>
                         <Link _text={{
-                            color: "indigo.500",
+                            color: "coolGray.500",
                             fontWeight: "medium",
                             fontSize: "sm"
                         }} href="#">
@@ -65,9 +85,11 @@ export default function Login() {
                         </Link>
                     </HStack>
                 </VStack>
-            </Box>
+                </View>
+            </View>
         </Center>
 
     );
 
+    
 }
