@@ -1,21 +1,25 @@
 import React from "react";
 import { NativeBaseProvider, extendTheme } from "native-base";
-import Login from "./src/components/login/login";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useFonts } from 'expo-font';
 import { Inter_100Thin, Inter_200ExtraLight, Inter_300Light, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_800ExtraBold } from '@expo-google-fonts/inter';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+import Login from "./src/components/login/login";
+import Home from "./src/components/home/home";
 
 const config = {
   dependencies: {
-    // For Expo projects (Bare or managed workflow)
     "linear-gradient": require("expo-linear-gradient").LinearGradient,
-    // For non expo projects
-    // 'linear-gradient': require('react-native-linear-gradient').default,
   },
 };
 
+const Stack = createNativeStackNavigator();
+
 export const theme = extendTheme({
+  colors: {
+    background: 'white'
+  },
   fontConfig: {
     Inter: {
       100: {
@@ -39,6 +43,7 @@ export const theme = extendTheme({
     },
     
   },
+
   fonts: {
     heading: "Inter_600SemiBold",
     body: "Inter_400Regular",
@@ -59,9 +64,13 @@ export default function App () {
   }
   return (
     <NativeBaseProvider config={config}  theme={theme}>
-      <SafeAreaView >
-        <Login></Login>
-      </SafeAreaView>
+        <NavigationContainer theme={theme}>
+          <Stack.Navigator>
+            <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
+            <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
+          </Stack.Navigator>
+        </NavigationContainer>
     </NativeBaseProvider>
+    
   );
 };

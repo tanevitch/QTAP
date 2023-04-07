@@ -9,22 +9,17 @@ export default function Login() {
             bottomView: {
                 flex: 1.5,
                 bottom: 50,
-                borderTopStartRadius: 60,
                 backgroundColor: "white",
-                borderTopEndRadius: 60
+                borderTopStartRadius: 60,
+                borderTopEndRadius: 60,
+                width:width,
+                height:height
             },
-            brandView: {
+            cabecera: {
                 flex: 1,
                 justifyContent: "center",
                 alignItems: "center"
             },
-            brandViewText: {
-                color: "#ffffff",
-                fontSize: 40,
-                fontWeight: "bold",
-                textTransform: "uppercase"
-
-            }
         }
     )
     return (
@@ -34,21 +29,20 @@ export default function Login() {
                     colors={['#FEAC5E', '#C779D0']}
                     start={[0, 0.5]}
                     end={[1, 0.5]}
-                    style={{ flex: 1 }}
-                >
-                <View style={styles.brandView}>
-                <Heading size="4xl" fontFamily="Inter_600SemiBold" fontWeight="600" color="white">
-                    QTAP
-                </Heading>
-                <Heading mt="1" color="white" fontFamily="Inter_200ExtraLight" fontWeight="medium" size="md">
-                    ¿Qué te anda pasando?
-                </Heading>
-                </View>
+                    style={{ flex: 1 }}>
+                    <Box style={styles.cabecera}>
+                        <Heading size="4xl" fontFamily="Inter_600SemiBold" fontWeight="600" color="white">
+                            QTAP
+                        </Heading>
+                        <Heading mt="1" color="white" fontFamily="Inter_200ExtraLight" fontWeight="medium" size="md">
+                            ¿Qué te anda pasando?
+                        </Heading>
+                    </Box>
                 </LinearGradient>
             </Box>
 
-            <View style={styles.bottomView} width={width} height={height}>
-                <View style={{padding: 40}}>
+            <Box style={styles.bottomView}>
+                <Box style={{padding: 40}}>
                 <VStack space={3} mt="5">
                     <FormControl>
                         <FormControl.Label>Email</FormControl.Label>
@@ -74,7 +68,7 @@ export default function Login() {
                     </LinearGradient>
                     <HStack mt="6" justifyContent="center">
                         <Text fontSize="sm" color="coolGray.600">
-                            No tengo cuenta.
+                            No tengo cuenta. ‎ 
                         </Text>
                         <Link _text={{
                             color: "coolGray.500",
@@ -85,8 +79,8 @@ export default function Login() {
                         </Link>
                     </HStack>
                 </VStack>
-                </View>
-            </View>
+                </Box>
+            </Box>
         </Center>
 
     );
