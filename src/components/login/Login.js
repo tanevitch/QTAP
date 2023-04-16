@@ -7,16 +7,17 @@ import { useEffect } from "react";
 export default function Login() {
     const { width, height } = Dimensions.get('window');
     const startAnimation = useRef(new Animated.Value(1)).current
+    const scaleTitle = useRef(new Animated.Value(1)).current
+
     const moveTitle = useRef(new Animated.ValueXY({ x: 0, y: 0 })).current
 
     const styles = StyleSheet.create(
         {
             bottomView: {
-                flex: 1,
                 backgroundColor: "white",
-                borderTopStartRadius: 100,
-                borderTopEndRadius: 100,
-                bottom: 100,
+                borderTopStartRadius: 70,
+                borderTopEndRadius: 70,
+                bottom: 80,
                 width: width,
                 height: height
             },
@@ -43,8 +44,13 @@ export default function Login() {
                         y: (height /4.3)
                     },
                     useNativeDriver: true
-                }
-                )
+                },
+                ),
+                Animated.timing(
+                    scaleTitle, {
+                    toValue: 0.8,
+                    useNativeDriver: true
+                })
             ])
             .start(() => {
 
@@ -69,6 +75,7 @@ export default function Login() {
                         transform: [
                             { translateX: moveTitle.x },
                             { translateY: moveTitle.y },
+                            { scale: scaleTitle}
                         ]
                     }}>
                         <Box style={styles.cabecera}>
@@ -83,7 +90,7 @@ export default function Login() {
                 </LinearGradient>
             </Box>
             <Box style={styles.bottomView}>
-                <Box style={{ padding: 70 }}>
+                <Box style={{ padding: 50 }}>
                     <VStack space={3} mt="5">
                         <FormControl>
                             <FormControl.Label>Email</FormControl.Label>
