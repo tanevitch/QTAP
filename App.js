@@ -6,7 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Login from "./src/components/login/login";
-import Home from "./src/components/home/home";
+
 
 const config = {
   dependencies: {
@@ -66,7 +66,6 @@ export default function App () {
     <NativeBaseProvider config={config}  theme={theme}>
         <NavigationContainer theme={theme}>
           <Stack.Navigator>
-            <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
             <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
           </Stack.Navigator>
         </NavigationContainer>
