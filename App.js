@@ -5,7 +5,8 @@ import { Inter_100Thin, Inter_200ExtraLight, Inter_300Light, Inter_400Regular, I
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import Login from "./src/components/login/login";
+import Registrarse from "./src/components/auth/register";
+import Login from "./src/components/auth/login";
 import Home from "./src/components/home/home";
 
 
@@ -67,7 +68,10 @@ export default function App () {
     <NativeBaseProvider config={config}  theme={theme}>
         <NavigationContainer theme={theme}>
           <Stack.Navigator>
-            <Stack.Screen name="Login" component={Home} options={{ headerShown: false }}/>
+            <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
+            <Stack.Screen name="Register" component={Registrarse} options={{ headerShown: false }}/>
+            <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
+
           </Stack.Navigator>
         </NavigationContainer>
     </NativeBaseProvider>
