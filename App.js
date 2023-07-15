@@ -1,13 +1,16 @@
+import 'react-native-gesture-handler';
 import React from "react";
 import { NativeBaseProvider, extendTheme } from "native-base";
 import { useFonts } from 'expo-font';
 import { Inter_100Thin, Inter_200ExtraLight, Inter_300Light, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_800ExtraBold } from '@expo-google-fonts/inter';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import Registrarse from "./src/components/auth/register";
 import Login from "./src/components/auth/login";
 import Home from "./src/components/home/home";
+import Perfil from './src/components/usuario/perfil';
 
 
 const config = {
@@ -16,11 +19,11 @@ const config = {
   },
 };
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export const theme = extendTheme({
   colors: {
-    background: 'white'
+    background: 'white',
   },
   fontConfig: {
     Inter: {
@@ -66,14 +69,25 @@ export default function App () {
   }
   return (
     <NativeBaseProvider config={config}  theme={theme}>
-        <NavigationContainer theme={theme}>
-          <Stack.Navigator>
-            <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
-            <Stack.Screen name="Register" component={Registrarse} options={{ headerShown: false }}/>
-            <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
-
-          </Stack.Navigator>
+      <NavigationContainer >
+      
+            <Drawer.Navigator initialRouteName="Login" drawerContent={ (props) => <Perfil {...props}/>}>
+              <Drawer.Screen name="Login" component={Login} options={{ headerShown: false }}/>
+              <Drawer.Screen name="Register" component={Registrarse} options={{ headerShown: false }}/>
+              <Drawer.Screen name="Home" component={Home} options={{ 
+                headerTintColor:"white", 
+                headerBackground: 
+                    () => 
+                    <LinearGradient
+                    colors={['#FEAC5E', '#C779D0']}
+                    start={[0, 0.5]}
+                    end={[1, 0.5]}
+                    style={{ flex: 1 }}
+                  />
+              }}/>
+            </Drawer.Navigator>
         </NavigationContainer>
+        
     </NativeBaseProvider>
     
   );
