@@ -11,6 +11,7 @@ import Registrarse from "./src/components/auth/register";
 import Login from "./src/components/auth/login";
 import Home from "./src/components/home/home";
 import Perfil from './src/components/usuario/perfil';
+import Patologia from './src/components/patologias/patologia';
 
 
 const config = {
@@ -75,6 +76,17 @@ export default function App () {
               <Drawer.Screen name="Login" component={Login} options={{ headerShown: false }}/>
               <Drawer.Screen name="Register" component={Registrarse} options={{ headerShown: false }}/>
               <Drawer.Screen name="Home" component={Home} options={{ 
+                headerTintColor:"white", 
+                headerBackground: 
+                    () => 
+                    <LinearGradient
+                    colors={['#FEAC5E', '#C779D0']}
+                    start={[0, 0.5]}
+                    end={[1, 0.5]}
+                    style={{ flex: 1 }}
+                  />
+              }}/>
+              <Drawer.Screen name="Patologia" component={Patologia} options={{ 
                 headerTintColor:"white", 
                 headerBackground: 
                     () => 
